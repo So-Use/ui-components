@@ -1,0 +1,31 @@
+.autocomplete-section {
+
+    .algolia-autocomplete {
+        width: 30%;
+    }
+    .mve-autocomplete {
+        width: 100%;
+        height: 32px;
+        font-size: 16px;
+        border: 1px solid lightgrey;
+        border-radius: 5px;
+    }
+    .aa-dropdown-menu {
+        z-index: 2000 !important;
+    }
+
+}
+
+.map-section {
+    
+    .markers-map {
+        height: 400px;
+        width: 50%;
+    }
+
+    .geojson-map {
+        height: 200px;
+        width: 50%;
+    }
+
+}

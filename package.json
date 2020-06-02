@@ -1,0 +1,62 @@
+{
+  "name": "components",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "clean": "rimraf lib",
+    "lint": "eslint demo.js src",
+    "storybook": "start-storybook",
+    "prettier": "prettier --write --single-quote --trailing-comma es5 --print-width 100 --tab-width 2 --jsx-bracket-same-line \"src/**/*.js\"",
+    "start": "yarn lint && cross-env NODE_ENV=development parcel serve demo.html -p 3000",
+    "build": "yarn lint && yarn clean && cross-env NODE_ENV=production parcel build src/index.js --out-dir=lib --out-file ui-components.min.js --global UIComponents",
+    "build-storybook": "build-storybook -c .storybook -o docs"
+  },
+  "devDependencies": {
+    "@babel/compat-data": "^7.8.0",
+    "@babel/core": "^7.10.2",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-react": "^7.8.3",
+    "@storybook/addon-actions": "^5.3.12",
+    "@storybook/addon-knobs": "^5.3.12",
+    "@storybook/addon-storysource": "^5.3.12",
+    "@storybook/react": "^5.3.19",
+    "babel-eslint": "10.0.3",
+    "babel-loader": "^8.1.0",
+    "cross-env": "7.0.0",
+    "cssnano": "4.1.10",
+    "eslint": "6.8.0",
+    "eslint-plugin-react": "7.18.3",
+    "eslint-plugin-react-hooks": "2.3.0",
+    "parcel-bundler": "^1.12.4",
+    "rimraf": "3.0.2",
+    "sass": "1.25.0",
+    "sass-loader": "^8.0.2"
+  },
+  "dependencies": {
+    "autocomplete.js": "0.37.1",
+    "leaflet": "^1.6.0",
+    "leaflet.markercluster": "^1.4.1",
+    "react": "16.0.0",
+    "react-dom": "16.12.0",
+    "react-leaflet-markercluster": "^2.0.0"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ],
+    "plugins": [
+      [
+        "@babel/plugin-proposal-class-properties",
+        {
+          "loose": false
+        }
+      ]
+    ]
+  },
+  "resolutions": {
+    "@babel/preset-env": "7.8.7"
+  }
+}
