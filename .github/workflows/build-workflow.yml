@@ -23,7 +23,7 @@ jobs:
     - run: yarn build-storybook
     - name: Commit files
       run: |
-        git add docs/ libs/
+        git add docs/ lib/
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git commit -m "Add built lib and storybook" -a
