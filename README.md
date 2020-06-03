@@ -65,3 +65,44 @@ const nantesLocation = [47.218371, -1.553621];
     customClassName="geojson-map"
 />
 ```
+
+### Table
+
+#### Simple table
+
+```js
+const data = [
+  {
+    firstname: "Amanda",
+    lastname: "Buckland",
+    age: 14
+  },
+  ...
+  {
+    firstname: "Alexandra",
+    lastname: "Oliver",
+    age: 38
+  }
+]
+
+<Table
+    columns={[
+        {
+            Header: 'Firstname',
+            accessor: "firstname",
+            sortByType: 'alphanumeric'
+        },
+        {
+            Header: 'Lastname',
+            accessor: 'lastname',
+            sortByType: 'alphanumeric'
+        },
+        {
+            Header: 'Age',
+            accessor: 'age',
+            sortByType: 'basic'
+        }
+    ]}
+    data={data}
+/>
+```

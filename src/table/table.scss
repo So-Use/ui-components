@@ -1,0 +1,108 @@
+.table-container {
+.table-filter-container {
+    input {
+      width: 30%;
+      margin-bottom: 5px;
+      height: 45px;
+      font-size: 16px;
+      padding: 0 10px;
+      border: 1px solid #3c3c3b;
+      border-radius: 5px;
+    }
+  }
+  
+  .pagination {
+    display: flex;
+    margin-top: 5px;
+    justify-content: flex-end;
+    align-items: center;
+    button {
+      margin: 0 2px;
+      background: none;
+      height: 24px;
+    }
+    .pagination-page-container {
+      margin: 0 5px;
+    }
+    .select-per-page {
+      margin-left: 5px;
+    }
+    input, select {
+      height: 32px;
+      font-size: 14px;
+      padding: 0 5px;
+      border: 1px solid #3c3c3b;
+      border-radius: 5px;
+    }
+  }
+  
+  table {
+    border: 1px solid #3c3c3b;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+  
+    thead {
+      th {
+        color: #fff;
+        background-color: #3c3c3b;
+        padding: 8px 8px;
+        text-align: left;
+        &.sortable {
+          cursor: pointer;
+          &::after {
+            content: '';
+            float: right;
+            margin-top: 7px;
+            border-style: solid;
+            border-color: #fff transparent;
+            visibility: hidden;
+            opacity: 0;
+            -ms-user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+            border-width: 0 4px 4px;
+          }
+          &:hover {
+            &::after {
+              visibility: visible;
+              opacity: 0.4;
+            }
+          }
+        }
+        &[data-sortdir="asc"] {
+          &::after {
+            visibility: visible;
+            opacity: 1;
+            border-bottom: none;
+            border-width: 4px 4px 0;
+          }
+        }
+        &[data-sortdir="desc"] {
+          &::after {
+            visibility: visible;
+            opacity: 1;
+          }
+        }
+      }
+    }
+  
+    tbody {
+      tr {
+        &:nth-child(odd) {
+          background-color: #fff;
+        }
+  
+        &:nth-child(even) {
+          background-color: #e3e3e3;
+        }
+      }
+  
+      td {
+        padding: 8px 8px;
+        text-align: left;
+      }
+    }
+  }
+}

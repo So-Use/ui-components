@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import { Autocomplete } from './src/autocomplete/autocomplete.js';
 import { Map } from './src/map/map.js';
+import { Table } from './src/table/table.js';
 
 import './demo.scss'
 
@@ -14,6 +15,59 @@ const mapMarkers = [
 ];
 const nantesLocation = [47.218371, -1.553621];
 import nantesGeoJson from './data/nantes.geo.json';
+
+const data = [
+  {
+    firstname: "Amanda",
+    lastname: "Buckland",
+    age: 14
+  },
+  {
+    firstname: "Dylan",
+    lastname: "Roberts",
+    age: 32
+  },
+  {
+    firstname: "Abigail",
+    lastname: "Forsyth",
+    age: 28
+  },
+  {
+    firstname: "Luke",
+    lastname: "Burgess",
+    age: 74
+  },
+  {
+    firstname: "Sophie",
+    lastname: "Payne",
+    age: 61
+  },
+  {
+    firstname: "Una",
+    lastname: "McLean",
+    age: 32
+  },
+  {
+    firstname: "Julia",
+    lastname: "Vaughan",
+    age: 45
+  },
+  {
+    firstname: "Dorothy",
+    lastname: "Gray",
+    age: 19
+  },
+  {
+    firstname: "Owen",
+    lastname: "Hardacre",
+    age: 24
+  },
+  {
+    firstname: "Alexandra",
+    lastname: "Oliver",
+    age: 38
+  }
+]
 
 function Demo() {
 
@@ -47,6 +101,30 @@ function Demo() {
                  geoJson={nantesGeoJson.contour}
                  geoJsonAttribution={"&copy; <a href=\"https://geo.api.gouv.fr/\" target=\"_blank\" rel=\"noopener noreferrer\">Geo API Gouv</a>"}
                  customClassName="geojson-map"/>
+        </section>
+        <section>
+          <h2>Tables</h2>
+          <h3>Simple table</h3>
+          <Table
+              columns={[
+                  {
+                      Header: 'Firstname',
+                      accessor: "firstname",
+                      sortByType: 'alphanumeric'
+                  },
+                  {
+                      Header: 'Lastname',
+                      accessor: 'lastname',
+                      sortByType: 'alphanumeric'
+                  },
+                  {
+                      Header: 'Age',
+                      accessor: 'age',
+                      sortByType: 'basic'
+                  }
+              ]}
+              data={data}
+           />
         </section>
     </div>
   );
