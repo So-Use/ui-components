@@ -4,11 +4,11 @@ import { action } from '@storybook/addon-actions';
 
 
 export default { 
-    title: "Autocomplete",
+    title: "🛠 Components/Autocomplete",
     component: Autocomplete
 }
 
-
+// A `primary` button is used for emphasis.
 export const suggestCity = () => <Autocomplete 
                                     placeholder="Saisissez une adresse..."
                                     debounce={250}
@@ -20,3 +20,11 @@ export const suggestCity = () => <Autocomplete
                                     onSuggestItemSelected={action('suggested item selected')}
                                     selectOnEnter={true}
                                 />
+
+suggestCity.story = {
+    parameters: { 
+        docs: {
+        storyDescription: "Use `Autocomplete` to build an address autocomplete.",
+        },
+    },
+};

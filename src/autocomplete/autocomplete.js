@@ -7,6 +7,9 @@ import './autocomplete.scss';
 
 const randomStr = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
 
+/**
+ *  Autocomplete component built with algolia autocomplete.js component
+ */
 export class Autocomplete extends Component {
 
     constructor(props) {
@@ -97,28 +100,79 @@ export class Autocomplete extends Component {
 }
 
 Autocomplete.propTypes = {
+    /**
+     * Placeholder displayed in input
+     */
     placeholder: PropTypes.string,
+    /**
+     * Number of seconds to delay suggest url call between two user inputs.
+     */
     debounce: PropTypes.number,
+    /**
+     * Function which return suggest url to call (take user query in parameter)
+     */
     buildSuggestUrl: PropTypes.func.isRequired,
+    /**
+     * Function called to retrieved items to display from fetch response
+     */
     transformSuggestResponse: PropTypes.func,
+    /**
+     * Function called to display item in suggestion
+     */
     displaySuggestItem: PropTypes.func,
+    /**
+     * Function called to display item in input
+     */
     displaySuggestionInInput: PropTypes.func,
+    /**
+     * Message displayed when there is no suggestions
+     */
     emptySuggestMessage: PropTypes.string,
+    /**
+     * Action when user selects an item
+     */
     onSuggestItemSelected: PropTypes.func,
+    /**
+     * Enable/disable validation when user clicks 'Enter' on input
+     */
     selectOnEnter: PropTypes.bool,
+    /**
+     * Input class name
+     */
     customClassName: PropTypes.string,
+    /**
+     * Input id
+     */
     id: PropTypes.string,
+    /**
+     * Input name
+     */
     name: PropTypes.string,
+    /**
+     * Input title
+     */
     title: PropTypes.string,
+    /**
+     * Input is required or not
+     */
     required: PropTypes.bool,
+    /**
+     * Input initial value
+     */
     initialValue: PropTypes.string,
+    /**
+     * input keydown listener
+     */
     onKeyDown: PropTypes.func,
+    /**
+     * Function called when autocomplete is opened
+     */
     onAutocompleteOpened: PropTypes.func
 };
 
 Autocomplete.defaultProps = {
     placeholder: "Saisissez du texte...",
-    debounce: 0,
+    debounce: 250,
     transformSuggestResponse: (x) => x,
     displaySuggestItem: (x) => x,
     displaySuggestionInInput: (x) => x,

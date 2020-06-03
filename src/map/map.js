@@ -8,6 +8,9 @@ import 'leaflet/dist/leaflet.css';
 
 const randomStr = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
 
+/**
+ * Component to display a Map (using Leaflet library)
+ */
 export class Map extends Component {
 
     constructor(props) {
@@ -108,24 +111,80 @@ export class Map extends Component {
     
 }
 
+/**
+ * Marker definition
+ */
+const MarkerShape = PropTypes.shape({
+    /**
+     * Marker location ([latitude, longitude])
+     */
+    location: PropTypes.arrayOf(PropTypes.number),
+    /**
+     * Marker name
+     */
+    name: PropTypes.string,
+    /**
+     * Marker description
+     */
+    description: PropTypes.string,
+});
+
 Map.propTypes = {
+    /**
+     * Container id in which map will be displayed
+     */
     id: PropTypes.string,
+    /**
+     * Map center ([latitude, longitude] format)
+     */
     center: PropTypes.arrayOf(PropTypes.number),
+    /**
+     * Map default zoom
+     */
     zoom: PropTypes.number,
+    /**
+     * Enable/disable Map controls
+     */
     enableControls: PropTypes.bool,
+    /**
+     * Tile Layer URL (see leaflet documentation)
+     */
     tileLayerUrl: PropTypes.string,
+    /**
+     * Tile Layer attribution
+     */
     tileLayerAttribution: PropTypes.string,
-    markers: PropTypes.arrayOf(PropTypes.shape({
-        location: PropTypes.arrayOf(PropTypes.number),
-        name: PropTypes.string,
-        description: PropTypes.string,
-    })),
+    /**
+     * Map markers. A marker is definied by `location` ([lat, lon]), `name` (string) and `description` (string) fields
+     */
+    markers: PropTypes.arrayOf(MarkerShape),
+    /**
+     * Function called when a maker is clicked
+     */
     onMarkerClicked: PropTypes.func,
+    /**
+     * Fits or not map according to markers bounds
+     */
     fitMarkersBounds: PropTypes.bool,
+    /**
+     * GeoJSON to display on map
+     */
     geoJson: PropTypes.object,
+    /**
+     * GeoJSON attribution
+     */
     geoJsonAttribution: PropTypes.string,
+    /**
+     * Fits or not map according to geoJSON bounds
+     */
     fitGeoJsonBounds: PropTypes.bool,
+    /**
+     * Map container class name
+     */
     customClassName: PropTypes.string,
+    /**
+     * Enable/disable marker clustering
+     */
     clusteredMarkers: PropTypes.bool
 };
 

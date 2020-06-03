@@ -1,7 +1,12 @@
 {
-  "name": "components",
+  "name": "ui-components",
   "version": "1.0.0",
+  "description": "UI Components library.",
   "private": true,
+  "main": "index.js",
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "clean": "rimraf lib",
     "lint": "eslint demo.js src",
@@ -19,17 +24,25 @@
     "@babel/preset-env": "^7.8.4",
     "@babel/preset-react": "^7.8.3",
     "@storybook/addon-actions": "^5.3.12",
+    "@storybook/addon-docs": "^5.3.12",
     "@storybook/addon-knobs": "^5.3.12",
     "@storybook/addon-storysource": "^5.3.12",
     "@storybook/react": "^5.3.19",
+    "@storybook/theming": "^5.3.18",
     "babel-eslint": "10.0.3",
     "babel-loader": "^8.1.0",
+    "babel-plugin-react-docgen": "^4.1.0",
     "cross-env": "7.0.0",
     "cssnano": "4.1.10",
     "eslint": "6.8.0",
     "eslint-plugin-react": "7.18.3",
     "eslint-plugin-react-hooks": "2.3.0",
+    "github-markdown-css": "^4.0.0",
+    "highlight.js": "^10.0.1",
+    "html-to-react": "^1.4.2",
+    "markdown-it": "^10.0.0",
     "parcel-bundler": "^1.12.4",
+    "react-is": "^16.13.1",
     "rimraf": "3.0.2",
     "sass": "1.25.0",
     "sass-loader": "^8.0.2"
@@ -38,7 +51,7 @@
     "autocomplete.js": "0.37.1",
     "leaflet": "^1.6.0",
     "leaflet.markercluster": "^1.4.1",
-    "react": "16.0.0",
+    "react": "16.12.0",
     "react-dom": "16.12.0",
     "react-leaflet-markercluster": "^2.0.0"
   },

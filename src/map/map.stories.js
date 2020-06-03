@@ -4,13 +4,30 @@ import { action } from '@storybook/addon-actions';
 
 
 export default { 
-    title: "Map",
+    title: "🛠 Components/Map",
     component: Map
 }
 
+
 export const empty = () => <Map id="map"/>
+empty.story = {
+  name: 'Default',
+  parameters: {
+    docs: {
+      storyDescription: 'Map par défaut.'
+    }
+  }
+}
 
 export const withParisLatitudeLongitude = () => <Map id="map" center={[48.866667, 2.333333]}/>
+withParisLatitudeLongitude.story = {
+  parameters: {
+    docs: {
+      storyDescription: 'Map avec un centre défini.'
+    }
+  }
+}
+
 
 const niortLocation = [46.323716, -0.464777];
 const mapMarkers = [
@@ -20,4 +37,19 @@ const mapMarkers = [
 ];
 
 export const withMarkers = () => <Map id="map" center={niortLocation} markers={mapMarkers} onMarkerClicked={action("MarkerClicked")}/>
+withMarkers.story = {
+  parameters: {
+    docs: {
+      storyDescription: 'Map avec des markers.'
+    }
+  }
+}
+
 export const withMarkersWithoutCluster = () => <Map id="map" center={niortLocation} markers={mapMarkers} onMarkerClicked={action("MarkerClicked")} clusteredMarkers={false}/>
+withMarkersWithoutCluster.story = {
+  parameters: {
+    docs: {
+      storyDescription: 'Map avec des markers qui ne sont pas regroupés en cluster.'
+    }
+  }
+}
