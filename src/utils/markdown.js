@@ -37,7 +37,7 @@ const md = new MarkdownIt({
       try {
         return hljs.highlight(lang, str).value;
       }
-      catch (__) {
+      catch (__) { // eslint-disable-line no-empty
       }
     }
 
