@@ -106,3 +106,43 @@ const data = [
     data={data}
 />
 ```
+
+#### Paginated Table
+```js
+
+const resultsFromResponse = (response) => {
+    const data = response.data;
+    return Object.keys(data).map(countryCode => {
+        return {
+            countryCode,
+            ...data[countryCode]
+        }
+    })
+}
+
+const totalFromResponse = (response) => {
+    return response.total;
+}
+
+<PaginatedTable
+    columns={[
+        {
+            Header: 'Country code',
+            accessor: "countryCode"
+        },
+        {
+            Header: 'Country',
+            accessor: 'country'
+        },
+        {
+            Header: 'Region',
+            accessor: 'region'
+        }
+    ]}
+    searchUrl={(query, limit, offset, sort) => `https://api.first.org/data/v1/countries?q=${query}&limit=${limit}&offset=${offset}`}
+    resultsFromResponse={resultsFromResponse}
+    totalFromResponse={totalFromResponse}
+    filterable={true}
+    pageSize={10}
+/>
+```
