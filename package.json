@@ -5,15 +5,17 @@
   "private": true,
   "main": "index.js",
   "files": [
-    "lib"
+    "src/**/*.js",
+    "index.js",
+    "lib/"
   ],
   "scripts": {
     "clean": "rimraf lib",
-    "lint": "eslint demo.js src",
+    "lint": "eslint demo.js index.js",
     "storybook": "start-storybook",
     "prettier": "prettier --write --single-quote --trailing-comma es5 --print-width 100 --tab-width 2 --jsx-bracket-same-line \"src/**/*.js\"",
     "start": "yarn lint && cross-env NODE_ENV=development parcel serve demo.html -p 3000",
-    "build": "yarn lint && yarn clean && cross-env NODE_ENV=production parcel build src/index.js --out-dir=lib --out-file ui-components.min.js --global UIComponents",
+    "build": "yarn lint && yarn clean && cross-env NODE_ENV=production parcel build index.js --out-dir=lib --out-file ui-components.min.js --global UIComponents",
     "build-storybook": "build-storybook -c .storybook -o docs"
   },
   "devDependencies": {
