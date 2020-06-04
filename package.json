@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "UI Components library.",
   "private": true,
-  "main": "index.js",
+  "main": "lib/ui-components.min.js",
   "files": [
     "src/**/*.js",
     "index.js",
