@@ -31,6 +31,8 @@ import { Autocomplete } from 'ui-components';
 
 ```js
 import { Map } from 'ui-components';
+import 'react-leaflet-markercluster/dist/styles.min.css';
+import 'leaflet/dist/leaflet.css';
 
 const niortLocation = [46.323716, -0.464777];
 const mapMarkers = [
@@ -51,6 +53,8 @@ const mapMarkers = [
 
 ```js
 import { Map } from 'ui-components';
+import 'react-leaflet-markercluster/dist/styles.min.css';
+import 'leaflet/dist/leaflet.css';
 import nantesGeoJson from './data/nantes.geo.json';
 const nantesLocation = [47.218371, -1.553621];
 

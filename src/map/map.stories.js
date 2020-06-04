@@ -1,12 +1,16 @@
 import React from 'react';
 import { Map } from './map.js';
 import { action } from '@storybook/addon-actions';
+import markdown from './mapNotes.md';
 import 'react-leaflet-markercluster/dist/styles.min.css';
 import 'leaflet/dist/leaflet.css';
 
 export default { 
     title: "🛠 Components/Map",
-    component: Map
+    component: Map,
+    parameters: {
+      notes: { markdown },
+    }
 }
 
 
