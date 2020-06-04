@@ -115,7 +115,7 @@ export const withColumnAsLink = () => <Table
 withColumnAsLink.story = {
     parameters: { 
         docs: {
-        storyDescription: "Avec une colonne qui contient un lien.",
+        storyDescription: "With a link in a column",
         },
     },
 };

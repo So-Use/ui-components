@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import Leaflet from 'leaflet';
 import LeafletMarkerCluster from 'leaflet.markercluster';
-import 'react-leaflet-markercluster/dist/styles.min.css';
-import 'leaflet/dist/leaflet.css';
+//import 'react-leaflet-markercluster/dist/styles.min.css';
+//import 'leaflet/dist/leaflet.css';
 
 const randomStr = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
 

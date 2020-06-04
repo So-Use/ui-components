@@ -4,7 +4,8 @@ import ReactDOM from 'react-dom';
 import { Autocomplete } from './src/autocomplete/autocomplete.js';
 import { Map } from './src/map/map.js';
 import { Table } from './src/table/table.js';
-
+import 'react-leaflet-markercluster/dist/styles.min.css';
+import 'leaflet/dist/leaflet.css';
 import './demo.scss'
 
 const niortLocation = [46.323716, -0.464777];
