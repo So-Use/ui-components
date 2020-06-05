@@ -150,3 +150,10 @@ const totalFromResponse = (response) => {
     pageSize={10}
 />
 ```
+
+### Tools
+
+#### Create JSX from String
+```js
+createJSXFromString("<label>Label as String</label><ul><li>Item 1</li><li>Item 2</li></ul>", "root-class", "div")
+```
