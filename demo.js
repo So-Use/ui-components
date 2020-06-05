@@ -4,9 +4,12 @@ import ReactDOM from 'react-dom';
 import { Autocomplete } from './src/autocomplete/autocomplete.js';
 import { Map } from './src/map/map.js';
 import { Table } from './src/table/table.js';
+import { MarkdownEditor } from './src/editor/markdownEditor.js';
 import 'react-leaflet-markercluster/dist/styles.min.css';
 import 'leaflet/dist/leaflet.css';
 import './demo.scss'
+import 'tui-editor/dist/tui-editor-contents.css';
+import 'tui-editor/dist/tui-editor.css';
 
 const niortLocation = [46.323716, -0.464777];
 const mapMarkers = [
@@ -126,6 +129,18 @@ function Demo() {
               ]}
               data={data}
            />
+        </section>
+        <section>
+          <h2>Editor</h2>
+          <h3>Markdown Editor</h3>
+          <MarkdownEditor toolbarItems={[
+              'bold',
+              'italic',
+              'strike',
+              'divider',
+              'link',
+              'divider'
+          ]} maxCharacters={250} />
         </section>
     </div>
   );

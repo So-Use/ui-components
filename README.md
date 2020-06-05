@@ -25,6 +25,20 @@ import { Autocomplete } from 'ui-components';
 />
 ```
 
+### MarkdownEditor
+```js
+import { MarkdownEditor } from 'ui-components';
+
+<MarkdownEditor toolbarItems={[
+              'bold',
+              'italic',
+              'strike',
+              'divider',
+              'link',
+              'divider'
+          ]} maxCharacters={250} />
+```
+
 ### Map
 
 #### With markers
