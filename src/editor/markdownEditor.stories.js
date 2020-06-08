@@ -42,6 +42,20 @@ withPlaceholder.story = {
     }
 }
 
+
+export const withRemainingCount = () => {
+  return <MarkdownEditor
+      maxCharacters={120}
+  />
+}
+withRemainingCount.story = {
+parameters: {
+  docs: {
+    storyDescription: 'With remaining count (maxCharacters is defined)'
+  }
+}
+}
+
 export const withAllInitalProps = () => {
 
     const label = 'Toolbar items';
@@ -83,46 +97,4 @@ withAllInitalProps.story = {
       storyDescription: 'With all initial props defined'
     }
   }
-}
-
-export const withoutRemainingCount = () => {
-
-  const label = 'Toolbar items';
-  const valuesObj = {
-      heading: 'heading',
-      bold: 'bold',
-      italic: 'italic',
-      strike: 'strike',
-      divider: 'divider',
-      quote: 'quote',
-      divider: 'divider',
-      ul: 'ul',
-      ol: 'ol',
-      task: 'task',
-      indent: 'indent',
-      outdent: 'outdent',
-      divider: 'divider',
-      table: 'table',
-      link: 'link',
-      divider: 'divider'
-  };
-  const defaultValue = ['heading', 'bold', 'italic'];
-  const optionsObj = {
-  display: 'multi-select'
-  };
-
-  const value = options(label, valuesObj, defaultValue, optionsObj);
-  return <MarkdownEditor
-      initialValue={"There is already content"}
-      placeholder={"You can type something"}
-      onBlur={action("OnBlur")}
-      toolbarItems={value}
-  />
-}
-withoutRemainingCount.story = {
-parameters: {
-  docs: {
-    storyDescription: 'Without remaining count (maxCharacters is not defined)'
-  }
-}
 }
