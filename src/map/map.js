@@ -93,7 +93,7 @@ export class Map extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.center && nextProps.center !== this.props.center) {
-            this.setCenter(nextProps.center)
+            this.setCenter(nextProps.center, nextProps.zoom)
         }
         if (nextProps.markers != this.props.markers) {
             this.setMarkers(nextProps.markers)
@@ -125,9 +125,13 @@ export class Map extends Component {
         }
     }
 
-    setCenter(center) {
+    setCenter(center, zoom) {
         if (this.map) {
-            this.map.panTo(center)
+            if (zoom) {
+                this.map.flyTo(center, zoom)
+            } else {
+                this.map.panTo(center)
+            }
         }
     }
 
