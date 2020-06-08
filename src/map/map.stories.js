@@ -1,6 +1,7 @@
 import React from 'react';
 import { Map } from './map.js';
 import { action } from '@storybook/addon-actions';
+import { withKnobs, number } from "@storybook/addon-knobs";
 import markdown from './mapNotes.md';
 import 'react-leaflet-markercluster/dist/styles.min.css';
 import 'leaflet/dist/leaflet.css';
@@ -24,7 +25,7 @@ empty.story = {
   }
 }
 
-export const withParisLatitudeLongitude = () => <Map id="map" center={[48.866667, 2.333333]}/>
+export const withParisLatitudeLongitude = () => <Map id="map" center={[number("Latitude", 48.866667), number("Longitude", 2.333333)]}/>
 withParisLatitudeLongitude.story = {
   parameters: {
     docs: {

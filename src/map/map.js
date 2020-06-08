@@ -8,18 +8,7 @@ import LeafletMarkerCluster from 'leaflet.markercluster';
 
 const randomStr = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
 
-/**
- * Component to display a Map (using Leaflet library)
- */
-export class Map extends Component {
-
-    constructor(props) {
-        super(props);
-        this.leafletMarkers = []
-    }
-
-    componentDidMount() {
-        const markerSvgIcon = '<svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><defs><style>.cls-1{fill:#C32229;}</style></defs><title>map-marker</title><path class="cls-1" d="M172.27,501.67C27,291,0,269.41,0,192,0,86,86,0,192,0S384,86,384,192c0,77.41-27,99-172.27,309.67a24,24,0,0,1-39.46,0ZM192,272a80,80,0,1,0-80-80A80,80,0,0,0,192,272Z"/></svg>';
+const markerSvgIcon = '<svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><defs><style>.cls-1{fill:#C32229;}</style></defs><title>map-marker</title><path class="cls-1" d="M172.27,501.67C27,291,0,269.41,0,192,0,86,86,0,192,0S384,86,384,192c0,77.41-27,99-172.27,309.67a24,24,0,0,1-39.46,0ZM192,272a80,80,0,1,0-80-80A80,80,0,0,0,192,272Z"/></svg>';
         const markerSvgIconUrl = encodeURI("data:image/svg+xml," + markerSvgIcon).replace('#','%23');
         const markerIcon = Leaflet.icon({
             iconUrl: markerSvgIconUrl,
@@ -29,6 +18,20 @@ export class Map extends Component {
             popupAnchor: [1, -34],
             tooltipAnchor: [16, -28]
         });
+
+/**
+ * Component to display a Map (using Leaflet library)
+ */
+export class Map extends Component {
+
+    constructor(props) {
+        super(props);
+        this.leafletMarkers = []
+        this.map = undefined;
+        this.featureGroup = undefined;
+    }
+
+    componentDidMount() {
 
         const enableControls = this.props.enableControls;
         const mapOptions = {
@@ -40,32 +43,20 @@ export class Map extends Component {
             boxZoom: enableControls,
             maxZoom: 18
         };
-        const map = Leaflet.map(this.mountNode, mapOptions)
+        this.map = Leaflet.map(this.mountNode, mapOptions)
                            .setView(this.props.center, this.props.zoom);
-        map.scrollWheelZoom.disable();
+                           this.map.scrollWheelZoom.disable();
 
         // Markers
-        let featureGroup;
         if (this.props.clusteredMarkers){
-            featureGroup = new LeafletMarkerCluster.MarkerClusterGroup({
+            this.featureGroup = new LeafletMarkerCluster.MarkerClusterGroup({
                 maxClusterRadius: 40
             })
         } else {
-            featureGroup = Leaflet.featureGroup([]);
+            this.featureGroup = Leaflet.featureGroup([]);
         } 
-        featureGroup.addTo(map);
-        this.props.markers.forEach((marker, index) => {
-            const leafletMarker = Leaflet.marker(marker.location, {title: marker.name, alt: marker.name, icon: markerIcon})
-                   .bindPopup(marker.description)
-                   .on('click', () => {
-                        this.props.onMarkerClicked(index);
-                    });
-            leafletMarker.addTo(featureGroup);
-            this.leafletMarkers.push(leafletMarker);
-        });
-        if (this.props.fitMarkersBounds) {
-            map.fitBounds(featureGroup.getBounds());
-        }
+        this.featureGroup.addTo(this.map);
+        this.setMarkers(this.props.markers);
 
         // GeoJson
         const geoJson = this.props.geoJson;
@@ -84,21 +75,66 @@ export class Map extends Component {
                 geoJsonLayerOptions["attribution"] = geoJsonAttribution;
             }
             const geoJsonLayer = Leaflet.geoJSON(geoJson, geoJsonLayerOptions);
-            geoJsonLayer.addTo(map);
+            geoJsonLayer.addTo(this.map);
             if (this.props.fitGeoJsonBounds) {
-                map.fitBounds(geoJsonLayer.getBounds());
+                this.map.fitBounds(geoJsonLayer.getBounds());
             }
         }
 
         Leaflet.tileLayer(
             this.props.tileLayerUrl,
             { attribution: this.props.tileLayerAttribution }
-        ).addTo(map);
+        ).addTo(this.map);
 
         this.mountNode.addEventListener('openMarkerPopup', (e) => {
             this.leafletMarkers[e.detail.index].openPopup();
         })
     }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.center && nextProps.center !== this.props.center) {
+            this.setCenter(nextProps.center)
+        }
+        if (nextProps.markers != this.props.markers) {
+            this.setMarkers(nextProps.markers)
+        }
+    }
+
+    setMarkers(markers) {
+        if (this.map) {
+            if (this.leafletMarkers) {
+                this.leafletMarkers.forEach(marker => {
+                    marker.remove();
+                })
+                this.leafletMarkers = [];
+            }
+            if (markers) {
+                markers.forEach((marker, index) => {
+                    const leafletMarker = Leaflet.marker(marker.location, {title: marker.name, alt: marker.name, icon: markerIcon})
+                        .bindPopup(marker.description)
+                        .on('click', () => {
+                                this.props.onMarkerClicked(index);
+                            });
+                    leafletMarker.addTo(this.featureGroup);
+                    this.leafletMarkers.push(leafletMarker);
+                });
+                if (this.props.fitMarkersBounds) {
+                    this.map.fitBounds(this.featureGroup.getBounds());
+                }
+            }
+        }
+    }
+
+    setCenter(center) {
+        if (this.map) {
+            this.map.panTo(center)
+        }
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return false;
+    }
+    
 
     render() {
         return (
