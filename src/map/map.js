@@ -89,6 +89,13 @@ export class Map extends Component {
         this.mountNode.addEventListener('openMarkerPopup', (e) => {
             this.leafletMarkers[e.detail.index].openPopup();
         })
+
+        this.map.on('click', (event) => {
+            this.props.onMapClicked([event.latlng.lat, event.latlng.lng])
+        })
+        this.map.on('contextmenu', (event) => {
+            this.props.onMapContextClicked([event.latlng.lat, event.latlng.lng])
+        })
     }
 
     UNSAFE_componentWillReceiveProps(nextProps) {
@@ -200,9 +207,17 @@ Map.propTypes = {
      */
     markers: PropTypes.arrayOf(MarkerShape),
     /**
-     * Function called when a maker is clicked
+     * Function called when a marker is clicked
      */
     onMarkerClicked: PropTypes.func,
+    /**
+     * Function called when map is clicked.[lat, lng] of clicked point in passed in parameter
+     */
+    onMapClicked: PropTypes.func,
+    /**
+     * Function called when map is clicked with rightmouse button or on mobile with a long press.[lat, lng] of clicked point in passed in parameter
+     */
+    onMapContextClicked: PropTypes.func,
     /**
      * Fits or not map according to markers bounds
      */
@@ -238,6 +253,8 @@ Map.defaultProps = {
     tileLayerAttribution: "&copy; ESRI contributors",
     markers: [],
     onMarkerClicked: () => {},
+    onMapClicked: () => {},
+    onMapContextClicked: () => {},
     fitMarkersBounds: false,
     fitGeoJsonBounds: true,
     customClassName: "mve-map",

@@ -59,3 +59,21 @@ withMarkersWithoutCluster.story = {
     }
   }
 }
+
+export const withEventOnMapClicked = () => <Map id="map" onMapClicked={action("MapClicked")} />
+withEventOnMapClicked.story = {
+  parameters: {
+    docs: {
+      storyDescription: 'Map avec un listener sur le clic sur la map'
+    }
+  }
+}
+
+export const withEventOnMapContextClicked = () => <Map id="map" onMapContextClicked={action("MapContextClicked")} />
+withEventOnMapContextClicked.story = {
+  parameters: {
+    docs: {
+      storyDescription: 'Map avec un listener sur le clic droit ou le "clic long" sur la map.'
+    }
+  }
+}
