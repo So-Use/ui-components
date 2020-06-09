@@ -1,7 +1,7 @@
 import React from 'react';
 import { Map } from './map.js';
 import { action } from '@storybook/addon-actions';
-import { withKnobs, number } from "@storybook/addon-knobs";
+import { withKnobs, number, object } from "@storybook/addon-knobs";
 import markdown from './mapNotes.md';
 import 'react-leaflet-markercluster/dist/styles.min.css';
 import 'leaflet/dist/leaflet.css';
@@ -42,7 +42,7 @@ const mapMarkers = [
   {location: [46.325827, -0.465872], name: "MAIF Assurances Niort", description: "<em>29 Rue Brisson, 79000 Niort</em>"},
 ];
 
-export const withMarkers = () => <Map id="map" center={niortLocation} markers={mapMarkers} onMarkerClicked={action("MarkerClicked")}/>
+export const withMarkers = () => <Map id="map" center={niortLocation} markers={object("Markers", mapMarkers)} onMarkerClicked={action("MarkerClicked")}/>
 withMarkers.story = {
   parameters: {
     docs: {

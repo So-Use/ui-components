@@ -91,7 +91,7 @@ export class Map extends Component {
         })
     }
 
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
         if (nextProps.center && nextProps.center !== this.props.center) {
             this.setCenter(nextProps.center, nextProps.zoom)
         }
@@ -103,6 +103,7 @@ export class Map extends Component {
     setMarkers(markers) {
         if (this.map) {
             if (this.leafletMarkers) {
+                this.featureGroup.clearLayers();
                 this.leafletMarkers.forEach(marker => {
                     marker.remove();
                 })
