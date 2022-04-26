@@ -59,7 +59,7 @@
     "react-dom": "16.12.0",
     "react-leaflet-markercluster": "^2.0.0",
     "react-table": "7.0.4",
-    "tui-editor": "^1.4.10"
+    "tui-editor2": "^1.4.13"
   },
   "babel": {
     "presets": [
