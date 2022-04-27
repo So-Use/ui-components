@@ -3,6 +3,8 @@ UI Components library
 
 ## Install
 
+Use `yarn add` to install the lib:
+
 ```sh
 yarn add https://github.com/So-Use/ui-components
 ```
