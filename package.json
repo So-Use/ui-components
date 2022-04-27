@@ -51,15 +51,15 @@
     "sass-loader": "^8.0.2"
   },
   "dependencies": {
-    "@toast-ui/react-editor": "^2.1.2",
+    "@toast-ui/react-editor": "2.1.2",
     "autocomplete.js": "0.37.1",
-    "leaflet": "^1.6.0",
-    "leaflet.markercluster": "^1.4.1",
+    "leaflet": "1.6.0",
+    "leaflet.markercluster": "1.4.1",
     "react": "16.12.0",
     "react-dom": "16.12.0",
-    "react-leaflet-markercluster": "^2.0.0",
+    "react-leaflet-markercluster": "2.0.0",
     "react-table": "7.0.4",
-    "tui-editor2": "^1.4.13"
+    "tui-editor2": "1.4.13"
   },
   "babel": {
     "presets": [
